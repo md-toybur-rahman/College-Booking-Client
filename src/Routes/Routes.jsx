@@ -7,6 +7,10 @@ import MyCollege from "../Components/MyCollege/MyCollege";
 import CollegeDetails from "../Components/CollegeDetails/CollegeDetails";
 import FullGallery from "../Components/FullGallery/FullGallery";
 import Research from "../Components/Research/Research";
+import Login from "../Components/Login/Login";
+import SignUp from "../Components/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
+import AdmissionForm from "../Components/Admission/AdmissionForm";
 
 const router = createBrowserRouter([
     {
@@ -23,16 +27,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/admission',
-                element: <Admission></Admission>
+                element: <PrivateRoute><Admission></Admission></PrivateRoute>
             },
             {
                 path: '/myCollege',
-                element: <MyCollege></MyCollege>
+                element: <PrivateRoute><MyCollege></MyCollege></PrivateRoute>
             },
-            {
-                path: '/details',
-                element: <CollegeDetails></CollegeDetails>
-            },
+            // {
+            //     path: '/details',
+            //     element: <PrivateRoute><CollegeDetails></CollegeDetails></PrivateRoute>
+            // },
             {
                 path: '/gallery',
                 element: <FullGallery></FullGallery>
@@ -43,7 +47,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <CollegeDetails></CollegeDetails>
+                element: <PrivateRoute><CollegeDetails></CollegeDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://college-booking-server-sable.vercel.app/info/${params.id}`)
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/signUp',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/admissionForm',
+                element: <PrivateRoute><AdmissionForm></AdmissionForm></PrivateRoute>
             }
         ]
     }

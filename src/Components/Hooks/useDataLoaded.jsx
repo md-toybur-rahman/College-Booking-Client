@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useDataLoaded = () => {
     const [collegeData, setCollegeData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/')
+        fetch('https://college-booking-server-sable.vercel.app/info')
             .then(res => res.json())
             .then(data => setCollegeData(data));
     }, [])

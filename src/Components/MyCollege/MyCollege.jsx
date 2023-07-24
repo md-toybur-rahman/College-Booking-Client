@@ -3,7 +3,6 @@
 const MyCollege = () => {
     return (
         <div>
-            This is My College Layout
         </div>
     );
 };
